@@ -1,0 +1,22 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Build files
+dist/
+build/
+*.zip
+*.crx
+
+# Editor files
+.vscode/
+.idea/
+*.suo
+*.sln
+*.user
+*.swp
