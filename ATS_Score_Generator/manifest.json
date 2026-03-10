@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "ATS Score Generator",
+  "version": "1.0",
+  "description": "Analyzes job descriptions against your resume and generates an ATS score and missing keywords using local LLM or OpenRouter.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "ATS Score Generator"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
