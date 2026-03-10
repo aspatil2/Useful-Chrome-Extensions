@@ -65,7 +65,14 @@ Respond ONLY in valid JSON format with the following structure:
       throw new Error(`API error (${response.status}): ${errorText}`);
     }
 
-    const data = await response.json();
+    const responseText = await response.text();
+    let data;
+    try {
+      data = JSON.parse(responseText);
+    } catch (e) {
+      let preview = responseText.substring(0, 100).replace(/\n/g, ' ');
+      throw new Error(`The API URL returned an invalid response (not JSON). Did you provide the full completion endpoint (e.g., /v1/chat/completions)?\nPreview: ${preview}`);
+    }
     let content = data.choices[0].message.content;
     
     // Clean up markdown wrapping if present
